@@ -1,9 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CloneRegistry
 {
@@ -20,7 +16,7 @@ namespace CloneRegistry
             RegistryKey regKey = null;
             if (regKeyFullPath.StartsWith(HKEY_LOCAL_MACHINE, StringComparison.InvariantCultureIgnoreCase))
             {
-                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_LOCAL_MACHINE.Length+1);
+                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_LOCAL_MACHINE.Length + 1);
                 regKey = Registry.LocalMachine.OpenSubKey(regKeyRelativePath);
                 if (regKey == null)
                 {
@@ -29,7 +25,7 @@ namespace CloneRegistry
             }
             else if (regKeyFullPath.StartsWith(HKEY_CLASSES_ROOT, StringComparison.InvariantCultureIgnoreCase))
             {
-                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CLASSES_ROOT.Length+1);
+                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CLASSES_ROOT.Length + 1);
                 regKey = Registry.ClassesRoot.OpenSubKey(regKeyRelativePath);
                 if (regKey == null)
                 {
@@ -38,7 +34,7 @@ namespace CloneRegistry
             }
             else if (regKeyFullPath.StartsWith(HKEY_CURRENT_USER, StringComparison.InvariantCultureIgnoreCase))
             {
-                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CURRENT_USER.Length+1);
+                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CURRENT_USER.Length + 1);
                 regKey = Registry.CurrentUser.OpenSubKey(regKeyRelativePath);
                 if (regKey == null)
                 {
@@ -47,7 +43,7 @@ namespace CloneRegistry
             }
             else if (regKeyFullPath.StartsWith(HKEY_USERS, StringComparison.InvariantCultureIgnoreCase))
             {
-                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_USERS.Length+1);
+                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_USERS.Length + 1);
                 regKey = Registry.Users.OpenSubKey(regKeyRelativePath);
                 if (regKey == null)
                 {
@@ -56,7 +52,7 @@ namespace CloneRegistry
             }
             else if (regKeyFullPath.StartsWith(HKEY_CURRENT_CONFIG, StringComparison.InvariantCultureIgnoreCase))
             {
-                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CURRENT_CONFIG.Length+1);
+                string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CURRENT_CONFIG.Length + 1);
                 regKey = Registry.CurrentConfig.OpenSubKey(regKeyRelativePath);
                 if (regKey == null)
                 {
