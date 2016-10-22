@@ -10,7 +10,7 @@ namespace CloneRegistry
     /// <summary>
     /// Contains extension methods for <see cref="Registry"/>
     /// </summary>
-    public static class RegistryExtensions
+    internal static class RegistryExtensions
     {
         /// <summary>
         /// Copy one hive of registry keys into another
