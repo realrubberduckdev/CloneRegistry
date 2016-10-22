@@ -1,0 +1,12 @@
+#Visual Studio files
+*.[Oo]bj
+*.user
+*.suo
+*.log
+*.lib
+*.sbr
+*.sdf
+[Oo]bj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
