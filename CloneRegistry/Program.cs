@@ -14,8 +14,8 @@ namespace CloneRegistry
             string regKeySource = args[0];
             string regKeyDestination = args[1];
 
-            RegistryKey sourceKey = Registry.LocalMachine.OpenSubKey(regKeySource);
-            RegistryKey destinationKey = Registry.LocalMachine.CreateSubKey(regKeyDestination);
+            RegistryKey sourceKey = regKeySource.ParseRegsitryKey();
+            RegistryKey destinationKey = regKeyDestination.ParseRegsitryKey();
             sourceKey.CopyTo(destinationKey);
         }
     }
