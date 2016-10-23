@@ -5,7 +5,7 @@ namespace CloneRegistry
 {
     public static class StringExtensions
     {
-        internal static RegistryKey ParseRegistryKey(this string regKeyFullPath)
+        public static RegistryKey ParseRegistryKey(this string regKeyFullPath)
         {
             const string HKEY_LOCAL_MACHINE = "HKEY_LOCAL_MACHINE";
             const string HKEY_CLASSES_ROOT = "HKEY_CLASSES_ROOT";
