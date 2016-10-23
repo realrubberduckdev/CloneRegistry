@@ -2,8 +2,8 @@
 Tool to easily clone a registry hive into another.
 
 #Uses of the tool
-> The team I work in, needs to create machines and clone some existing registry keys and re-enter them with updated values. CloneRegistry is on path to do that with a config file.
-> ...add more.
+* The team I work in, needs to create machines and clone some existing registry keys and re-enter them with updated values. CloneRegistry is on path to do that with a config file.
+* ...add more.
 
 # Example
 CloneRegistry.exe "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Wow6432Node" "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Wow6432Node_Backup"
