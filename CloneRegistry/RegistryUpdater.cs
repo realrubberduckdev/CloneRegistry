@@ -1,9 +1,5 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CloneRegistry
 {
@@ -21,7 +17,7 @@ namespace CloneRegistry
             var csReader = new CloneSettingsReader(settingsFile);
             List<CopyData> copyDataList = csReader.GetCopyData();
 
-            foreach(CopyData copyData in copyDataList)
+            foreach (CopyData copyData in copyDataList)
             {
                 CloneRegistry(copyData.SourceKey, copyData.DestinationKey);
             }
