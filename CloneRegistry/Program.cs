@@ -1,10 +1,13 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 
 namespace CloneRegistry
 {
     class Program
     {
+        private static RegistryUpdater _registryUpdater = new RegistryUpdater();
+
         static void Main(string[] args)
         {
             if (args.Length != 2)
@@ -15,16 +18,13 @@ namespace CloneRegistry
 
             if (args[0].Equals(@"/s", StringComparison.InvariantCultureIgnoreCase))
             {
-                CloneUsingSettings(args[1]);
+                _registryUpdater.UpdateRegistry(args[1]);
             }
             else
             {
                 string regKeySource = args[0];
                 string regKeyDestination = args[1];
-
-                RegistryKey sourceKey = regKeySource.ParseRegistryKey();
-                RegistryKey destinationKey = regKeyDestination.ParseRegistryKey();
-                sourceKey.CopyTo(destinationKey);
+                _registryUpdater.CloneRegistry(regKeySource, regKeyDestination);
             }
         }
 
@@ -33,11 +33,6 @@ namespace CloneRegistry
             Console.WriteLine("Examples:");
             Console.WriteLine(@"CloneRegistry.exe ""HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Wow6432Node"" ""HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Wow6432Node_Backup""");
             Console.WriteLine(@"CloneRegistry.exe /s settings.xml");
-        }
-
-        private static void CloneUsingSettings(string settingsFile)
-        {
-            //dummy method
         }
     }
 }
