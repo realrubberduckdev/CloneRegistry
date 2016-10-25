@@ -19,6 +19,7 @@ namespace TestCloneRegistry
         }
 
         [Test]
+        [Description("Test that we get expected registry key in strings from the provided xml.")]
         public void TestGetCopyData()
         {
             List<CopyData> expectedCopyDataList = new List<CopyData>();
