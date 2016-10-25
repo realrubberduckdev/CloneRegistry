@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestCloneSettingsReader.cs" />
     <Compile Include="TestStringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSystemHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CloneRegistry\CloneRegistry.csproj">

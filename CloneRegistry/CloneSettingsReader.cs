@@ -41,5 +41,32 @@ namespace CloneRegistry
     {
         public string SourceKey;
         public string DestinationKey;
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("(SourceKey:");
+            sb.Append(SourceKey);
+            sb.Append(",");
+            sb.Append("DestinationKey:");
+            sb.Append(DestinationKey);
+            sb.Append(")");
+            return sb.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            CopyData objCopyData = (CopyData)obj;
+            if (objCopyData.SourceKey.Equals(SourceKey) && objCopyData.DestinationKey.Equals(DestinationKey))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
