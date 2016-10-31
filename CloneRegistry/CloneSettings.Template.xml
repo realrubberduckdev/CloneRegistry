@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CloneRegistry>
-  <Copy SourceKey="HKEY_CURRENT_USER\Console" DestinationKey="HKEY_CURRENT_USER\ConsoleBackup" />
+  <Copy SourceKey="HKEY_CURRENT_USER\dpTemp" DestinationKey="HKEY_CURRENT_USER\dpTempBackup2" />
+  <Copy SourceKey="HKEY_CURRENT_USER\dpTemp" DestinationKey="HKEY_CURRENT_USER\dpTempBackup" />
+  <Update KeyName="HKEY_CURRENT_USER\dpTempBackup" ValueName="someVar" Value="2" />
 </CloneRegistry>
