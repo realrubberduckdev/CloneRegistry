@@ -32,6 +32,25 @@ namespace CloneRegistry
             }
             return copyDataList;
         }
+
+        public List<UpdateData> GetUpdateData()
+        {
+            List<UpdateData> updateDataList = new List<UpdateData>();
+
+            XmlNode cloneRegistryNode = _xmlDocument.FirstChild;
+            XmlNodeList updateTags;
+            updateTags = _xmlDocument.GetElementsByTagName("Update");
+
+            foreach (XmlNode updateTag in updateTags)
+            {
+                var updateData = new UpdateData();
+                updateData.KeyName = updateTag.Attributes["KeyName"].Value;
+                updateData.ValueName = updateTag.Attributes["ValueName"].Value;
+                updateData.Value = updateTag.Attributes["Value"].Value;
+                updateDataList.Add(updateData);
+            }
+            return updateDataList;
+        }
     }
 
     public struct CopyData
@@ -65,5 +84,12 @@ namespace CloneRegistry
         {
             return base.GetHashCode();
         }
+    }
+
+    public struct UpdateData
+    {
+        public string KeyName;
+        public string ValueName;
+        public string Value;
     }
 }

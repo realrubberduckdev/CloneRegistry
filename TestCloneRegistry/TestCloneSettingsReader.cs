@@ -39,5 +39,23 @@ namespace TestCloneRegistry
 
             Assert.That(copyDataList, Is.EqualTo(expectedCopyDataList), "GetCopyData incorrect CopyData list.");
         }
+
+        [Test]
+        [Description("Test that we get expected registry key in strings from the provided xml.")]
+        public void TestGetUpdateData()
+        {
+            List<UpdateData> expectedUpdateDataList = new List<UpdateData>();
+            expectedUpdateDataList.Add(new UpdateData()
+            {
+                KeyName = @"HKEY_CURRENT_USER\dpTempBackup",
+                ValueName = @"someVar",
+                Value = "2"
+            });
+
+            var csReader = new CloneSettingsReader(_settingsFilePath);
+            List<UpdateData> updateDataList = csReader.GetUpdateData();
+
+            Assert.That(updateDataList, Is.EqualTo(expectedUpdateDataList), "GetCopyData incorrect UpdateData list.");
+        }
     }
 }

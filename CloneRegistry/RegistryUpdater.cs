@@ -21,6 +21,12 @@ namespace CloneRegistry
             {
                 CloneRegistry(copyData.SourceKey, copyData.DestinationKey);
             }
+
+            List<UpdateData> updateDataList = csReader.GetUpdateData();
+            foreach (UpdateData updateData in updateDataList)
+            {
+                Registry.SetValue(updateData.KeyName, updateData.ValueName, updateData.Value);
+            }
         }
     }
 }
