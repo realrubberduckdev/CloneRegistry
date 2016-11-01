@@ -12,6 +12,10 @@ Tool to easily clone a registry hive into another.
 CloneRegistry.exe "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Wow6432Node" "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Wow6432Node_Backup"
 Copies all keys to the new Backup one.
 
+CloneRegistry.exe /s settings.xml
+This can copy and update keys.
+Check template in solution for xml format.
+
 # For buiding solution
 From visual studio prompt call setenv.bat.
 Msbuild the sln file.
