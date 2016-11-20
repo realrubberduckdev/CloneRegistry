@@ -50,6 +50,12 @@ namespace CloneRegistry
         private static RegistryKey GetRegistryKey(RegistryHive registryHive, string regKeyRelativePath)
         {
             RegistryKey baseRegKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64);
+
+            if (!Environment.Is64BitOperatingSystem)
+            {
+                baseRegKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry32);
+            }
+
             RegistryKey regKey = baseRegKey.CreateSubKey(regKeyRelativePath);
             return regKey;
         }
