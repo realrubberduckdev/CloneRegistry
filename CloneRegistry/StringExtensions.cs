@@ -17,53 +17,46 @@ namespace CloneRegistry
             if (regKeyFullPath.StartsWith(HKEY_LOCAL_MACHINE, StringComparison.InvariantCultureIgnoreCase))
             {
                 string regKeyRelativePath = regKeyFullPath.Substring(HKEY_LOCAL_MACHINE.Length + 1);
-                regKey = Registry.LocalMachine.OpenSubKey(regKeyRelativePath);
-                if (regKey == null)
-                {
-                    regKey = Registry.LocalMachine.CreateSubKey(regKeyRelativePath);
-                }
+                regKey = GetRegistryKey(RegistryHive.LocalMachine, regKeyRelativePath);
             }
             else if (regKeyFullPath.StartsWith(HKEY_CLASSES_ROOT, StringComparison.InvariantCultureIgnoreCase))
             {
                 string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CLASSES_ROOT.Length + 1);
-                regKey = Registry.ClassesRoot.OpenSubKey(regKeyRelativePath);
-                if (regKey == null)
-                {
-                    regKey = Registry.ClassesRoot.CreateSubKey(regKeyRelativePath);
-                }
+                regKey = GetRegistryKey(RegistryHive.ClassesRoot, regKeyRelativePath);
             }
             else if (regKeyFullPath.StartsWith(HKEY_CURRENT_USER, StringComparison.InvariantCultureIgnoreCase))
             {
                 string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CURRENT_USER.Length + 1);
-                regKey = Registry.CurrentUser.OpenSubKey(regKeyRelativePath);
-                if (regKey == null)
-                {
-                    regKey = Registry.CurrentUser.CreateSubKey(regKeyRelativePath);
-                }
+                regKey = GetRegistryKey(RegistryHive.CurrentUser, regKeyRelativePath);
             }
             else if (regKeyFullPath.StartsWith(HKEY_USERS, StringComparison.InvariantCultureIgnoreCase))
             {
                 string regKeyRelativePath = regKeyFullPath.Substring(HKEY_USERS.Length + 1);
-                regKey = Registry.Users.OpenSubKey(regKeyRelativePath);
-                if (regKey == null)
-                {
-                    regKey = Registry.LocalMachine.CreateSubKey(regKeyRelativePath);
-                }
+                regKey = GetRegistryKey(RegistryHive.Users, regKeyRelativePath);
             }
             else if (regKeyFullPath.StartsWith(HKEY_CURRENT_CONFIG, StringComparison.InvariantCultureIgnoreCase))
             {
                 string regKeyRelativePath = regKeyFullPath.Substring(HKEY_CURRENT_CONFIG.Length + 1);
-                regKey = Registry.CurrentConfig.OpenSubKey(regKeyRelativePath);
-                if (regKey == null)
-                {
-                    regKey = Registry.LocalMachine.CreateSubKey(regKeyRelativePath);
-                }
+                regKey = GetRegistryKey(RegistryHive.CurrentConfig, regKeyRelativePath);
             }
             else
             {
                 throw new Exception("Invalid registry key string obtained. It should start with something similar to HKEY_LOCAL_MACHINE etc.");
             }
 
+            return regKey;
+        }
+
+        private static RegistryKey GetRegistryKey(RegistryHive registryHive, string regKeyRelativePath)
+        {
+            RegistryKey baseRegKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry64);
+
+            if (!Environment.Is64BitOperatingSystem)
+            {
+                baseRegKey = RegistryKey.OpenBaseKey(registryHive, RegistryView.Registry32);
+            }
+
+            RegistryKey regKey = baseRegKey.CreateSubKey(regKeyRelativePath);
             return regKey;
         }
     }
