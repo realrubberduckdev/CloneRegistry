@@ -17,7 +17,7 @@ namespace CloneRegistry
             // copy the values
             foreach (var name in sourceKey.GetValueNames())
             {
-                destinationKey.SetValue(name, sourceKey.GetValue(name), sourceKey.GetValueKind(name));
+                destinationKey.SetValue(name, sourceKey.GetValue(name, "", RegistryValueOptions.DoNotExpandEnvironmentNames), sourceKey.GetValueKind(name));
             }
 
             // copy the subkeys
