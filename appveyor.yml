@@ -18,6 +18,10 @@ configuration: Release
 #  - Debug
 #  - Release
 
+# scripts to run before tests
+before_build:
+    - setenv.bat
+
 build:
   parallel: true                  # enable MSBuild parallel builds
   project: CloneRegistry.sln      # path to Visual Studio solution or project
@@ -32,7 +36,3 @@ build:
 test:
   assemblies:
     - TestCloneRegistry.dll
-
-# scripts to run before tests
-before_test:
-    - setenv.bat
