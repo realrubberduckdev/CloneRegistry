@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
