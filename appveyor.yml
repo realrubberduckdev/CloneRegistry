@@ -2,13 +2,13 @@
 #       build configuration       #
 #---------------------------------#
 
-# build platform, i.e. x86, x64, Any CPU. This setting is optional.
-platform: Any CPU
+version: '1.0.{build}'
 
-# to add several platforms to build matrix:
-#platform:
-#  - x86
-#  - Any CPU
+image: Visual Studio 2017
+
+init:
+  # Good practise, because Windows line endings are different from Unix/Linux ones
+  - cmd: git config --global core.autocrlf true
 
 # build Configuration, i.e. Debug, Release, etc.
 configuration: Release
@@ -18,21 +18,25 @@ configuration: Release
 #  - Debug
 #  - Release
 
-# scripts to run before tests
 before_build:
-    - setenv.bat
+  # Display .NET Core version
+  - cmd: dotnet --version
 
-build:
-  parallel: true                  # enable MSBuild parallel builds
-  project: CloneRegistry.sln      # path to Visual Studio solution or project
+build_script:
+  - cmd: dotnet build CloneRegistry.sln
+  # Publish: output will be in .\bin\Release\netcoreapp2.1\win10-x64\publish\
+  - cmd: dotnet publish -c Release -r win10-x64 CloneRegistry\CloneRegistry.csproj
 
-  # MSBuild verbosity level
-  verbosity: normal
+artifacts:
+ - path: '.\bin\Release\netcoreapp2.1\win10-x64\publish\'
+   name: CloneRegistryTool
+   type: zip
 
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
 
-test:
-  assemblies:
-    - TestCloneRegistry.dll
+test_script:
+  - cmd: dotnet test .\TestCloneRegistry\TestCloneRegistry.csproj
+
+deploy: off
