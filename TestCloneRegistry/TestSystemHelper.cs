@@ -16,8 +16,7 @@ namespace TestCloneRegistry
         /// <returns></returns>
         public static string GetTestDataPath(string testName)
         {
-            string crHomePath = Environment.GetEnvironmentVariable("CRHOME");
-            string testDataPath = Path.Combine(crHomePath, "TestCloneRegistry", "TestData", testName);
+            string testDataPath = Path.Combine("TestData", testName);
             return testDataPath;
         }
     }
