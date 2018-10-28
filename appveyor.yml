@@ -24,11 +24,11 @@ before_build:
 
 build_script:
   - cmd: dotnet build CloneRegistry.sln
-  # Publish: output will be in .\CloneRegistry\bin\Release\netcoreapp2.1\win10-x64\publish\
+  # Publish: output will be in .\bin\Release\netcoreapp2.1\win10-x64\publish\
   - cmd: dotnet publish -c Release -r win10-x64 CloneRegistry\CloneRegistry.csproj
 
 artifacts:
- - path: '.\CloneRegistry\bin\Release\netcoreapp2.1\win10-x64\publish\'
+ - path: '.\bin\Release\netcoreapp2.1\win10-x64\publish\'
    name: CloneRegistryTool
    type: zip
 
