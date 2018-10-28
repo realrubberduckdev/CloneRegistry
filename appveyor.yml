@@ -32,4 +32,16 @@ build_script:
 test_script:
   - cmd: dotnet test .\TestCloneRegistry\TestCloneRegistry.csproj
 
+#---------------------------------#
+#       publish configuration     #
+#---------------------------------#
+publish_script:
+  # output will be in .\CloneRegistry\bin\Release\netcoreapp2.1\win10-x64\publish\
+- cmd: dotnet publish -c Release -r win10-x64 CloneRegistry\CloneRegistry.csproj
+
+artifacts:
+ - path: '.\CloneRegistry\bin\Release\netcoreapp2.1\win10-x64\publish\'
+   name: CloneRegistryTool
+   type: zip
+
 deploy: off
