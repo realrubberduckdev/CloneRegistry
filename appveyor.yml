@@ -2,6 +2,14 @@
 #       build configuration       #
 #---------------------------------#
 
+version: '1.0.{build}'
+
+image: Visual Studio 2017
+
+init:
+  # Good practise, because Windows line endings are different from Unix/Linux ones
+  - cmd: git config --global core.autocrlf true
+
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: Any CPU
 
@@ -18,21 +26,18 @@ configuration: Release
 #  - Debug
 #  - Release
 
-# scripts to run before tests
 before_build:
-    - setenv.bat
+  # Display .NET Core version
+  - cmd: dotnet --version
 
-build:
-  parallel: true                  # enable MSBuild parallel builds
-  project: CloneRegistry.sln      # path to Visual Studio solution or project
-
-  # MSBuild verbosity level
-  verbosity: normal
+build_script:
+  - cmd: dotnet build CloneRegistry.sln
 
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
 
-test:
-  assemblies:
-    - TestCloneRegistry.dll
+test_script:
+  - cmd: dotnet test .\TestCloneRegistry\TestCloneRegistry.csproj
+
+deploy: off
